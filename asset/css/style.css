@@ -1,0 +1,602 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     text-decoration: none;
+     outline: none;
+     border: none;
+     font-family: 'Poppins', sans-serif;
+}
+
+*::selection {
+     background: #f00;
+     color: #fff;
+}
+
+:root {
+     --primary-color: #f9f9f9;
+     --second-color: #222;
+     --navbar-text-color: #222; /* Warna teks navbar */
+     --event-bg-color: #fff; /* Warna latar belakang untuk event-item */
+     --event-text-color: #222; /* Warna teks untuk event-item */
+}
+
+.dark-mode {
+     --primary-color: #212121;
+     --second-color: #f9f9f9;
+     --navbar-text-color: #f9f9f9;
+     --event-bg-color: #333; /* Warna latar belakang untuk event-item dalam mode gelap */
+     --event-text-color: #f9f9f9; /* Warna teks untuk event-item dalam mode gelap */
+}
+
+html {
+     font-size: 62%;
+     overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+     display: none;  /* Untuk Chrome, Safari, dan Opera */
+}
+
+body {
+     background: var(--primary-color);
+     color: var(--second-color);
+     transition: 1s;
+}
+
+section {
+     min-height: 100vh;
+     padding: 0 9%;
+}
+
+header {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     background: var(--primary-color);
+     padding: 2rem 9%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     z-index: 1000;
+}
+
+header .garuda-logo {
+     width: 4rem; /* Perbaikan untuk ukuran logo */
+     animation: slideRight .5s linear forwards;
+     opacity: 0;
+}
+
+header .navbar a {
+     display: inline-block;
+     font-size: 1.7rem;
+     margin-left: 3rem;
+     color: var(--navbar-text-color); /* Menggunakan warna teks navbar */
+     font-weight: 500;
+     animation: slideTop .5s ease forwards;
+     opacity: 0;
+     animation-delay: calc(.2s * var(--i));
+}
+
+header .navbar a:hover {
+     color: #f00;
+}
+
+header .mode {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 3rem;
+     height: 3rem;
+     background: linear-gradient(#f00, #000);
+     color: #f9f9f9;
+     font-size: 1.5rem;
+     border-radius: 50%;
+     cursor: pointer;
+     animation: slideRight .5s linear forwards;
+     opacity: 0;
+}
+
+header .bg-nav {
+     display: none;
+}
+
+.home {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.home .flag {
+     position: fixed;
+     right: 0;
+     bottom: 0;
+     width: 50vw;
+     z-index: -1;
+     animation: slide .5s linear forwards;
+     opacity: 0;
+}
+
+.home .content h3 {
+     font-size: 4.4rem;
+     color: var(--second-color);
+     text-transform: uppercase;
+     line-height: 5.3rem;
+     animation: slideRight .5s linear forwards;
+     opacity: 0;
+     animation-delay: .3s;
+}
+
+.home .content h3 span {
+     font-size: 7rem;
+     color: #f00;
+     line-height: 7rem;
+}
+
+.home .content p {
+     font-size: 1.6rem;
+     color: var(--second-color);
+     padding: 1rem 0;
+     animation: slideLeft .5s ease forwards;
+     opacity: 0;
+     animation-delay: 1s;
+}
+
+.btn {
+     position: relative;
+     display: inline-block;
+     padding: .8rem 5rem;
+     margin-top: 1rem;
+     border-radius: 5rem;
+     font-size: 1.7rem;
+     color: #f9f9f9;
+     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+     overflow: hidden;
+     animation: fadeIn .5s linear forwards;
+     opacity: 0;
+     animation-delay: 1.5s;
+}
+
+.btn span {
+     position: absolute;
+     top: -100%;
+     left: 0;
+     background: linear-gradient(#000, #f00, #000, #f00);
+     width: 100%;
+     height: 300%;
+     z-index: -1;
+     transition: .5s;
+}
+
+.btn:hover span {
+     top: 0;
+}
+
+.home .image {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 200rem;
+}
+
+.home .image .birthday {
+     position: absolute;
+     width: 90%;
+     animation: fadeIn .5s linear forwards;
+     opacity: 0;
+     animation-delay: 2s;
+}
+
+.home .image .garuda-siluet {
+     position: absolute;
+     width: 65%;
+     opacity: .1;
+     z-index: -2;
+     transition: 1s;
+     animation: zoomIn .7s ease forwards;
+     transform: scale(0);
+     animation-delay: 2.3s;
+}
+
+.home .image .garuda-siluet.garuda-dark {
+     opacity: .8;
+}
+
+.sci {
+     position: absolute;
+     bottom: 2.5rem;
+     display: flex;
+     margin-left: -2rem;
+}
+
+.sci a {
+     display: inline-block;
+     width: 4rem;
+     height: 4rem;
+     background: #f00;
+     border-radius: 50%;
+     text-align: center;
+     margin-left: 2.5rem;
+     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+     transition: .3s;
+     animation: fadeIn .5s linear forwards;
+     opacity: 0;
+     animation-delay: calc(.2s * var(--i));
+}
+
+.sci a i {
+     font-size: 1.7rem;
+     color: #f9f9f9;
+     line-height: 4rem;
+     transition: .3s;
+}
+
+.sci a:hover {
+     background: #f9f9f9;
+     transform: translateY(-5px);
+}
+
+.sci a:hover i {
+     color: #f00;
+}
+
+.toggle-btn {
+     position: relative;
+     font-size: 3rem;
+     color: var(--second-color);
+     cursor: pointer;
+     display: none;
+     animation: slideLeft .5s linear forwards;
+     opacity: 0;
+}
+
+.event {
+     padding: 5rem 9%;
+     background: var(--primary-color);
+     color: var(--second-color);
+     transition: 1s;
+}
+
+.event h2 {
+     font-size: 3rem;
+     text-align: center;
+     margin-bottom: 3rem;
+}
+
+.event-list {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+}
+
+.event-item {
+     background: var(--event-bg-color);
+     color: var(--event-text-color);
+     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+     border-radius: 1rem;
+     padding: 2rem;
+     margin: 1rem;
+     flex: 1 1 calc(33.333% - 2rem);
+     transition: .3s;
+     text-align: center;
+     animation: slideTop .5s ease forwards;
+     opacity: 0;
+     animation-delay: calc(.5s * var(--i));
+}
+
+.event-item img {
+     max-width: 100%;
+     border-radius: 1rem; /* Tambahkan sudut membulat pada gambar */
+     margin-bottom: 1rem; /* Tambahkan ruang antara gambar dan judul */
+}
+
+.event-item h3 {
+     font-size: 2rem;
+     color: #f00;
+     margin-bottom: 1rem;
+     animation: slideTop .5s ease forwards;
+     opacity: 0;
+     animation-delay: calc(.6s * var(--i));
+}
+
+.event-item p {
+     font-size: 1.5rem;
+}
+
+.event-item:hover {
+     transform: translateY(-5rem);
+     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+.event .event-list .event-item .foto-event {
+     animation: zoomIn .7s ease forwards;
+     transform: scale(0);
+     animation-delay: 2s;
+}
+
+.pahlawan {
+     padding: 5rem 9%;
+     background: var(--primary-color);
+     color: var(--second-color);
+     transition: 1s;
+}
+
+.pahlawan h2 {
+     font-size: 3rem;
+     text-align: center;
+     margin-bottom: 3rem;
+}
+
+.pahlawan-list {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+}
+
+.pahlawan-item {
+     background: var(--event-bg-color);
+     color: var(--event-text-color);
+     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+     border-radius: 1rem;
+     padding: 2rem;
+     margin: 1rem;
+     flex: 1 1 calc(33.333% - 2rem);
+     transition: .3s;
+     text-align: center;
+     animation: slideTop .5s ease forwards;
+     opacity: 0;
+     animation-delay: calc(.5s * var(--i));
+}
+
+.pahlawan-item img {
+     max-width: 100%;
+     border-radius: 1rem; /* Tambahkan sudut membulat pada gambar */
+     margin-bottom: 1rem; /* Tambahkan ruang antara gambar dan judul */
+}
+
+.pahlawan-item h3 {
+     font-size: 2rem;
+     color: #f00;
+     margin-bottom: 1rem;
+     animation: slideTop .5s ease forwards;
+     opacity: 0;
+     animation-delay: calc(.6s * var(--i));
+}
+
+.pahlawan-item p {
+     font-size: 1.5rem;
+}
+
+.pahlawan-item:hover {
+     transform: translateY(-5rem);
+     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+.pahlawan .pahlawan-list .pahlawan-item .foto-pahlawan {
+     animation: zoomIn .7s ease forwards;
+     transform: scale(0);
+     animation-delay: 2s;
+}
+
+.hidden {
+     display: none;
+}
+
+
+/* KEYFRAME ANIMATION */
+@keyframes slideRight {
+     0% {
+          transform: translateX(-100px);
+          opacity: 0;
+     }
+
+     100% {
+          transform: translateX(0);
+          opacity: 1;
+     }
+}
+
+@keyframes slideTop {
+     0% {
+          transform: translateY(100px);
+          opacity: 0;
+     }
+
+     100% {
+          transform: translateY(0);
+          opacity: 1;
+     }
+}
+
+@keyframes slideLeft {
+     0% {
+          transform: translateX(100px);
+          opacity: 0;
+     }
+
+     100% {
+          transform: translateX(0);
+          opacity: 1;
+     }
+}
+
+@keyframes fadeIn {
+     0% {
+          opacity: 0;
+     }
+
+     100% {
+          opacity: 1;
+     }
+}
+
+@keyframes zoomIn {
+     0% {
+          transform: scale(0);
+     }
+
+     100% {
+          transform: scale(1);
+     }
+}
+
+@keyframes slide {
+     0% {
+          transform: translate(100px, 100px);
+          opacity: 0;
+     }
+
+     100% {
+          transform: translate(0);
+          opacity: 1;
+     }
+}
+
+
+/* BREAKPOINTS */
+@media (max-width: 992px) {
+     html {
+          font-size: 60%;
+     }
+
+     section {
+          padding: 0 5%;
+     }
+
+     header {
+          padding: 2rem 5%;
+     }
+
+     .home .content h3 {
+          font-size: 3.3rem;
+          line-height: 2.5rem;
+     }
+
+     .home .content h3 span {
+          font-size: 5.5rem;
+     }
+
+     .sci {
+          bottom: 2rem;
+     }
+
+     .event-item {
+          flex: 1 1 calc(50% - 2rem);
+      }
+
+      .pahlawan-item {
+          flex: 1 1 calc(50% - 2rem);
+      }
+}
+
+@media (max-width: 768px) {
+     html {
+          font-size: 59%;
+     }
+
+     .toggle-btn {
+          display: block;
+     }
+
+     header .navbar {
+          position: absolute;
+          top: -300px;
+          left: 0;
+          width: 100%;
+          background: var(--primary-color);
+          padding: 1rem 5%;
+          box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+          border-top: .1rem solid rgba(0, 0, 0, .2);
+          overflow: hidden;
+          transition: .8s;
+          z-index: -2;
+     }
+
+     header .navbar.slide {
+          top: 100%;
+     }
+
+     header .navbar a {
+          display: block;
+          margin: 2rem 0;
+          font-size: 1.8rem;
+     }
+
+     header .mode {
+          position: absolute;
+          right: 12%;
+     }
+
+     header .bg-nav {
+          position: fixed;
+          display: block;
+          top: 0;
+          left: 0;
+          width: 100px;
+          height: 78px;
+          background: var(--primary-color);
+          z-index: -1;
+          transition: 1s;
+     }
+
+     section {
+          padding: 2rem 5%;
+     }
+
+     .home {
+          flex-direction: column;
+     }
+
+     .home .image {
+          width: 50rem;
+          height: 20rem;
+          margin-top: 5rem;
+     }
+
+     .event-item {
+          flex: 1 1 100%;
+     }
+
+     .pahlawan-item {
+          flex: 1 1 100%;
+     }
+}
+
+@media (max-width: 600px) {
+     html {
+          font-size: 55%;
+     }
+
+     header .navbar .slide {
+          top: 78px;
+     }
+}
+
+@media (max-width: 434px) {
+     .home .image {
+          width: 40rem;
+     }
+}
+
+@media (max-width: 330px) {
+     html {
+          font-size: 50%;
+     }
+
+     header .mode {
+          right: 15%;
+     }
+
+     .home .image {
+          width: 40rem;
+          height: 25rem;
+     }
+
+     .sci {
+          bottom: 3rem;
+     }
+}
